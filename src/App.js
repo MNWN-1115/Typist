@@ -19,7 +19,9 @@ class App extends Component {
   }
 
   render() {
-    let currentPage = this.state.gameMode === '' ? <MainPage handleClick={this.handleButtonClick}/> : <GamePage />;
+    let currentPage = this.state.gameMode === '' ? 
+    <MainPage handleClick={this.handleButtonClick}/> : 
+    <GamePage mode={this.state.gameMode}/>;
     return (
       <div className="App">
         <header className="App-header">

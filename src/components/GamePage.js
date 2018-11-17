@@ -1,9 +1,12 @@
 import React from 'react';
+import GameDisplay from './subComponents/GameDisplay';
+import StatsBar from './subComponents/StatsBar';
 
-const GamePage = () => {
+const GamePage = ({ mode }) => {
     return (
         <div>
-            HELLO
+            <StatsBar mode={mode}/>
+            <GameDisplay />
         </div>
     )
 };
