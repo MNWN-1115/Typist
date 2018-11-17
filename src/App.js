@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MainPage from '../src/components/MainPage';
+import GamePage from '../src/components/GamePage';
 import './App.css';
 
 class App extends Component {
@@ -18,10 +19,11 @@ class App extends Component {
   }
 
   render() {
+    let currentPage = this.state.gameMode === '' ? <MainPage handleClick={this.handleButtonClick}/> : <GamePage />;
     return (
       <div className="App">
         <header className="App-header">
-          <MainPage handleClick={this.handleButtonClick}/>
+        {currentPage}
         </header>
       </div>
     );
