@@ -5,8 +5,8 @@ const GameDisplay = () => {
         <div style={
             {
                 backgroundColor: "Yellow", 
-                width: '500px', 
-                height: '400px',
+                width: '1000px', 
+                height: '800px',
                 border: '2px solid green'
             }
         }> this is the game Display</div>
