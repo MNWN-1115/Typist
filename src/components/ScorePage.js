@@ -1,8 +1,10 @@
 import React from 'react';
 
-const ScorePage = () => {
+const ScorePage = ({ onClick }) => {
     return (
-        <div>game over</div>
+        <div>game over
+        <button onClick={onClick}>New Game</button>
+        </div>
     )
 };
 

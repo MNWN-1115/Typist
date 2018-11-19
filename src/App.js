@@ -11,17 +11,21 @@ class App extends Component {
       gameMode: '',
       curWords: [['', 100, 100]],
     };
-    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleGameStart = this.handleGameStart.bind(this);
     this.handleGameLogic = this.handleGameLogic.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleRestart = this.handleRestart.bind(this);
   };
 
   handleKeyPress(e) {
     console.log(e.key)
   }
 
-  handleButtonClick(e) {
-    let interval = setInterval(() => this.handleGameLogic(interval), 1000)
+  handleGameStart(e) {
+    let speed = 1000;
+    if (e.target.value === 'medium') speed = 750;
+    if (e.target.value === 'hard') speed = 500;
+    let interval = setInterval(() => this.handleGameLogic(interval), speed)
     this.setState({
       gameMode: e.target.value,
     })
@@ -30,6 +34,13 @@ class App extends Component {
   fetchNewWord() {
     let wordList = ['word1', 'word2', 'word3', 'word4', 'word5']
     return wordList[Math.round(Math.random() * (wordList.length - 1))]
+  }
+
+  handleRestart(e) {
+    this.setState({
+      gameMode: '',
+      curWords: [['', 100, 100]],
+    })
   }
 
   handleGameLogic(interval) {
@@ -51,9 +62,9 @@ class App extends Component {
   render() {
     let currentPage = ''
     if (this.state.gameMode === '') {
-      currentPage = <MainPage handleClick={this.handleButtonClick}/>;
+      currentPage = <MainPage handleClick={this.handleGameStart}/>;
     } else if (this.state.gameMode === 'game over') {
-      currentPage = <ScorePage />;
+      currentPage = <ScorePage onClick={this.handleRestart}/>;
     } else {
       currentPage = <GamePage mode={this.state.gameMode} words={this.state.curWords} keyStroke={this.handleKeyPress}/>;
     }  
