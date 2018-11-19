@@ -6,8 +6,8 @@ const GameDisplay = ({ words }) => {
     return (
         <div style={{
             backgroundColor: 'Yellow', 
-            width: '1000px', 
-            height: '800px',
+            width: '800px', 
+            height: '600px',
             border: '2px solid green'
         }}>
         {display}

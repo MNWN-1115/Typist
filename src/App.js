@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MainPage from '../src/components/MainPage';
 import GamePage from '../src/components/GamePage';
+import ScorePage from '../src/components/ScorePage';
 import './App.css';
 
 class App extends Component {
@@ -8,16 +9,21 @@ class App extends Component {
     super();
     this.state = {
       gameMode: '',
-      curWords: [['h', 100, 100]],
+      curWords: [['', 100, 100]],
     };
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleGameLogic = this.handleGameLogic.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   };
 
+  handleKeyPress(e) {
+    console.log(e.key)
+  }
+
   handleButtonClick(e) {
-    setInterval(this.handleGameLogic, 2000)
+    let interval = setInterval(() => this.handleGameLogic(interval), 1000)
     this.setState({
-      gameMode: e.target.value
+      gameMode: e.target.value,
     })
   }
 
@@ -26,19 +32,32 @@ class App extends Component {
     return wordList[Math.round(Math.random() * (wordList.length - 1))]
   }
 
-  handleGameLogic() {
-    console.log('hello')
+  handleGameLogic(interval) {
+    document.getElementById('gameDisplay').focus();
+    if (this.state.curWords.length > 10) {
+      this.setState({
+        gameMode: 'game over',
+      })
+      clearInterval(interval);
+    }
     let word = this.fetchNewWord();
     let top = Math.round(Math.random() * 500);
-    let left = Math.round(Math.random() * 1000);
+    let left = Math.round(Math.random() * 650);
     this.setState({
-      curWords: [...this.state.curWords, [word, top, left]]
+      curWords: [...this.state.curWords, [word, left, top]]
     })
   }
+
   render() {
-    let currentPage = this.state.gameMode === '' ? 
-    <MainPage handleClick={this.handleButtonClick}/> : 
-    <GamePage mode={this.state.gameMode} words={this.state.curWords}/>;
+    let currentPage = ''
+    if (this.state.gameMode === '') {
+      currentPage = <MainPage handleClick={this.handleButtonClick}/>;
+    } else if (this.state.gameMode === 'game over') {
+      currentPage = <ScorePage />;
+    } else {
+      currentPage = <GamePage mode={this.state.gameMode} words={this.state.curWords} keyStroke={this.handleKeyPress}/>;
+    }  
+    
     return (
       <div className="App">
         <header className="App-header">
