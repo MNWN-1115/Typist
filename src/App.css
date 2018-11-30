@@ -1,1 +1,18 @@
+html, body {
+    height: 100%;
+}
+
+#app {
+    height: 99%;
+    width: 99%;
+}
+
+.App {
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+    height: 100%;
+    width: 100%;
+}
 
