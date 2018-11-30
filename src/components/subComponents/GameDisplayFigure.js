@@ -2,15 +2,15 @@ import React from 'react';
 
 const GameDisplayFigure = ({ display, left, top}) => {
     return (
-        <p style={{
+        <div className='wordDisplay' style={{
             backgroundColor: 'Blue',
             position: 'absolute',
-            marginLeft: `${left}px`,
-            marginTop: `${top}px`,
+            marginLeft: `${left}%`,
+            marginTop: `${top}%`,
             fontSize: '50px'
         }}>
         {display}
-        </p>
+        </div>
     );
 };
 
