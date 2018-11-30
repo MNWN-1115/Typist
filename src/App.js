@@ -52,8 +52,8 @@ class App extends Component {
       clearInterval(interval);
     }
     let word = this.fetchNewWord();
-    let top = Math.round(Math.random() * 500);
-    let left = Math.round(Math.random() * 650);
+    let top = Math.round(Math.random() * 45);
+    let left = Math.round(Math.random() * 90);
     this.setState({
       curWords: [...this.state.curWords, [word, left, top]]
     })
@@ -62,11 +62,11 @@ class App extends Component {
   render() {
     let currentPage = ''
     if (this.state.gameMode === '') {
-      currentPage = <MainPage handleClick={this.handleGameStart}/>;
+      currentPage = <MainPage id='MainPage' handleClick={this.handleGameStart}/>;
     } else if (this.state.gameMode === 'game over') {
-      currentPage = <ScorePage onClick={this.handleRestart}/>;
+      currentPage = <ScorePage id='ScorePage' onClick={this.handleRestart}/>;
     } else {
-      currentPage = <GamePage mode={this.state.gameMode} words={this.state.curWords} keyStroke={this.handleKeyPress}/>;
+      currentPage = <GamePage id='GamePage' mode={this.state.gameMode} words={this.state.curWords} keyStroke={this.handleKeyPress}/>;
     }  
     
     return (

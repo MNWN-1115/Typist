@@ -2,7 +2,7 @@ import React from 'react';
 
 const MainPage = ({ handleClick }) => {
   return (
-    <div>
+    <div className='header'>
       <h1>Typist</h1>
       <p>Score as many points as you can by typing the words</p>
       <h2>Game over after 10 words build up!</h2>
