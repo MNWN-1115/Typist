@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MainPage from '../src/components/MainPage';
 import GamePage from '../src/components/GamePage';
 import ScorePage from '../src/components/ScorePage';
+import wordsList from './helpers/dictionary';
 import './App.css';
 
 class App extends Component {
@@ -32,8 +33,7 @@ class App extends Component {
   }
 
   fetchNewWord() {
-    let wordList = ['word1', 'word2', 'word3', 'word4', 'word5']
-    return wordList[Math.round(Math.random() * (wordList.length - 1))]
+    return wordsList[Math.round(Math.random() * (wordsList.length - 1))]
   }
 
   handleRestart(e) {
