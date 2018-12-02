@@ -1,8 +1,8 @@
 import React from 'react';
 
-const StatsBar = ({ mode }) => {
+const StatsBar = ({ mode, score }) => {
     return (
-        <div> Difficulty: {mode} </div>
+        <div> Difficulty: {mode} | Score: {score}</div>
     )
 };
 

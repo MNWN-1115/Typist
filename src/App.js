@@ -11,6 +11,8 @@ class App extends Component {
     this.state = {
       gameMode: '',
       curWords: [['', 100, 100]],
+      curTypedWord: '',
+      score: 0,
     };
     this.handleGameStart = this.handleGameStart.bind(this);
     this.handleGameLogic = this.handleGameLogic.bind(this);
@@ -19,13 +21,45 @@ class App extends Component {
   };
 
   handleKeyPress(e) {
-    console.log(e.key)
+    if (e.key === 'Backspace') {
+      this.setState({
+        curTypedWord: this.state.curTypedWord.substring(0, this.state.curTypedWord.length - 1)
+      });
+    } else {
+      this.setState({
+        curTypedWord: this.state.curTypedWord + e.key
+      });
+    }
+    this.handleWordRemoval(e.key);
+  }
+
+  handleWordRemoval (key) {
+    let newWordsList = [];
+    let word = this.state.curTypedWord + key;
+    let wordMatched = false;
+    for (let i = 0; i < this.state.curWords.length; i++) {
+      console.log(word)
+      if (word === this.state.curWords[i][0] && word !== '') {
+        wordMatched = true;
+      } else {
+        newWordsList.push(this.state.curWords[i]);
+      }
+    }
+
+    if (wordMatched) {
+      this.setState({
+        score: this.state.score + 1,
+        curTypedWord: '',
+        curWords: newWordsList,
+      })
+    }
+    console.log(this.state.curTypedWord);
   }
 
   handleGameStart(e) {
-    let speed = 1000;
-    if (e.target.value === 'medium') speed = 750;
-    if (e.target.value === 'hard') speed = 500;
+    let speed = 2000;
+    if (e.target.value === 'medium') speed = 1500;
+    if (e.target.value === 'hard') speed = 1000;
     let interval = setInterval(() => this.handleGameLogic(interval), speed)
     this.setState({
       gameMode: e.target.value,
@@ -66,7 +100,13 @@ class App extends Component {
     } else if (this.state.gameMode === 'game over') {
       currentPage = <ScorePage id='ScorePage' onClick={this.handleRestart}/>;
     } else {
-      currentPage = <GamePage id='GamePage' mode={this.state.gameMode} words={this.state.curWords} keyStroke={this.handleKeyPress}/>;
+      currentPage = <GamePage 
+        id='GamePage' 
+        mode={this.state.gameMode} 
+        words={this.state.curWords} 
+        curWord={this.state.curTypedWord} 
+        keyStroke={this.handleKeyPress}
+        score={this.state.score}/>;
     }  
     
     return (
