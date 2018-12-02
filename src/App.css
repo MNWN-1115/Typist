@@ -29,4 +29,15 @@ html, body {
 
 .wordDisplay {
     display: block;
+    position: absolute;
+    font-Size: 50px;
+}
+
+#typedWordHeader {
+    margin-left: 45%;
+    float: left;
+}
+
+#gameDisplay:focus {
+    outline-width: 0;
 }

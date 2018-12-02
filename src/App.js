@@ -38,7 +38,6 @@ class App extends Component {
     let word = this.state.curTypedWord + key;
     let wordMatched = false;
     for (let i = 0; i < this.state.curWords.length; i++) {
-      console.log(word)
       if (word === this.state.curWords[i][0] && word !== '') {
         wordMatched = true;
       } else {
@@ -53,7 +52,6 @@ class App extends Component {
         curWords: newWordsList,
       })
     }
-    console.log(this.state.curTypedWord);
   }
 
   handleGameStart(e) {
@@ -86,7 +84,7 @@ class App extends Component {
       clearInterval(interval);
     }
     let word = this.fetchNewWord();
-    let top = Math.round(Math.random() * 45);
+    let top = Math.round(Math.random() * 50) + 2;
     let left = Math.round(Math.random() * 90);
     this.setState({
       curWords: [...this.state.curWords, [word, left, top]]
