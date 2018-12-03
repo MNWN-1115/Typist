@@ -72,6 +72,8 @@ class App extends Component {
     this.setState({
       gameMode: '',
       curWords: [['', 100, 100]],
+      curTypedWord: '',
+      score: 0,
     })
   }
 
@@ -84,8 +86,8 @@ class App extends Component {
       clearInterval(interval);
     }
     let word = this.fetchNewWord();
-    let top = Math.round(Math.random() * 50) + 2;
-    let left = Math.round(Math.random() * 90);
+    let top = Math.round(Math.random() * 40) + 2;
+    let left = Math.round(Math.random() * 85);
     this.setState({
       curWords: [...this.state.curWords, [word, left, top]]
     })
