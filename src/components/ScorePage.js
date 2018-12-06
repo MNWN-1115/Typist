@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ScorePage = ({ onClick }) => {
+const ScorePage = ({ onClick, score }) => {
     return (
         <div className='scores'>
-            <p>game over</p>
+            <h1>game over <br/> <h2>You Scored <br/> {score} pts! </h2></h1>
             <button onClick={onClick}>New Game</button>
         </div>
     )

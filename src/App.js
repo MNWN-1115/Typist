@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   handleGameStart(e) {
-    let speed = 2000;
+    let speed = 3000;
     if (e.target.value === 'medium') speed = 1500;
     if (e.target.value === 'hard') speed = 1000;
     let interval = setInterval(() => this.handleGameLogic(interval), speed)
@@ -98,7 +98,7 @@ class App extends Component {
     if (this.state.gameMode === '') {
       currentPage = <MainPage id='MainPage' handleClick={this.handleGameStart}/>;
     } else if (this.state.gameMode === 'game over') {
-      currentPage = <ScorePage id='ScorePage' onClick={this.handleRestart}/>;
+      currentPage = <ScorePage id='ScorePage' score={this.state.score} onClick={this.handleRestart}/>;
     } else {
       currentPage = <GamePage 
         id='GamePage' 
