@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   handleGameStart(e) {
-    let speed = 3000;
+    let speed = 2000;
     if (e.target.value === 'medium') speed = 1500;
     if (e.target.value === 'hard') speed = 1000;
     let interval = setInterval(() => this.handleGameLogic(interval), speed)
