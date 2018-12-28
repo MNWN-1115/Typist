@@ -16,4 +16,5 @@ const MainPage = ({ handleClick }) => {
   );
 };
 
+
 export default MainPage;
